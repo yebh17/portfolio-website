@@ -1,5 +1,4 @@
 document.getElementById("year").textContent = new Date().getFullYear();
-
 const header = document.querySelector(".site-header");
 let lastY = 0;
 window.addEventListener("scroll", () => {
