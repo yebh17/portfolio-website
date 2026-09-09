@@ -88,3 +88,524 @@
   .contact h2{font-size:18vw}
   footer{gap:15px;flex-direction:column;align-items:flex-start}
 }
+/* =========================================================
+   SUNNY v7 — cinematic motion layer
+   Keeps the existing visual design and adds scroll-driven UI.
+   ========================================================= */
+
+body{
+  --gold:#c6a15b;
+  --gold-soft:#9f8658;
+  --surface:#0b0b0a;
+  --line:#292824;
+}
+
+::selection{
+  background:#c6a15b;
+  color:#070707;
+}
+
+/* Initial loader */
+.page-loader{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:grid;
+  place-items:center;
+  background:#070707;
+  pointer-events:none;
+}
+.page-loader-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+}
+.page-loader-inner img{
+  width:76px;
+  height:76px;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 0 70px rgba(198,161,91,.16);
+}
+.page-loader-inner span{
+  font:600 .76rem "Space Grotesk",sans-serif;
+  letter-spacing:.42em;
+  color:#c7c2b8;
+  padding-left:.42em;
+}
+
+/* Header gets a slightly more premium glass treatment after scroll */
+.site-header{
+  border-bottom:1px solid transparent;
+}
+.site-header.is-scrolled{
+  background:rgba(7,7,7,.72);
+  border-color:rgba(255,255,255,.055);
+}
+
+/* Hero motion helpers */
+.hero-title{
+  overflow:hidden;
+  padding-bottom:.08em;
+}
+.hero-title em{
+  display:inline-block;
+}
+.hero-photo-wrap{
+  will-change:transform;
+}
+.hero-cutout{
+  will-change:transform,filter;
+}
+.circle-button{
+  position:relative;
+  overflow:hidden;
+  transition:border-color .3s ease,background .3s ease,transform .3s ease;
+}
+.circle-button:hover{
+  border-color:#c6a15b;
+  background:rgba(198,161,91,.08);
+  transform:scale(1.06);
+}
+.circle-button::after{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:1px solid rgba(198,161,91,.25);
+  border-radius:50%;
+  transform:scale(.72);
+  opacity:0;
+  transition:.3s ease;
+}
+.circle-button:hover::after{
+  transform:scale(1);
+  opacity:1;
+}
+
+/* Social links animate with a subtle moving highlight */
+.follow-strip{
+  overflow:hidden;
+}
+.follow-links a{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.follow-links a::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:#eeeae1;
+  transform:translateX(-102%);
+  transition:transform .32s cubic-bezier(.65,0,.35,1);
+}
+.follow-links a:hover::before{
+  transform:translateX(0);
+}
+.follow-links a:hover{
+  background:transparent;
+}
+
+/* Horizontal artist ticker */
+.motion-marquee{
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid #1d1d1d;
+  background:#070707;
+  padding:25px 0 23px;
+}
+.motion-marquee::before,
+.motion-marquee::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:10vw;
+  z-index:2;
+  pointer-events:none;
+}
+.motion-marquee::before{
+  left:0;
+  background:linear-gradient(90deg,#070707,transparent);
+}
+.motion-marquee::after{
+  right:0;
+  background:linear-gradient(-90deg,#070707,transparent);
+}
+.motion-marquee-track{
+  width:max-content;
+  display:flex;
+  align-items:center;
+  gap:24px;
+  will-change:transform;
+  font:500 clamp(1.1rem,2vw,1.75rem) "Space Grotesk",sans-serif;
+  letter-spacing:-.025em;
+  color:#a4a098;
+  white-space:nowrap;
+}
+.motion-marquee-track i{
+  font-style:normal;
+  font-size:.55em;
+  color:#8e764e;
+}
+
+/* Latest-release reveal + premium hover */
+.release{
+  overflow:hidden;
+}
+.real-artwork{
+  transform-style:preserve-3d;
+  perspective:1000px;
+  will-change:transform;
+  transition:box-shadow .45s ease;
+}
+.real-artwork::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:0;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.12) 48%,transparent 66%);
+  transform:translateX(-100%);
+  transition:opacity .3s ease;
+}
+.real-artwork:hover{
+  box-shadow:0 38px 100px rgba(0,0,0,.65),0 0 0 1px rgba(198,161,91,.12);
+}
+.real-artwork:hover::after{
+  opacity:1;
+  animation:releaseShine 1.05s ease forwards;
+}
+@keyframes releaseShine{
+  to{transform:translateX(100%)}
+}
+
+/* Statement gets line-by-line masked reveals */
+.statement{
+  overflow:hidden;
+}
+.statement-title{
+  overflow:visible;
+}
+.statement-line{
+  display:block;
+  overflow:hidden;
+  transform-origin:left center;
+
+  /* Glossy metallic text */
+  color:transparent;
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #eeeae1 18%,
+      #aaa69d 46%,
+      #f5f1e8 67%,
+      #77736b 100%
+    );
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.06),
+    0 10px 38px rgba(255,255,255,.035);
+}
+
+.statement-line.muted{
+  color:transparent;
+  background:
+    linear-gradient(
+      180deg,
+      #d7cdb7 0%,
+      #aaa08b 26%,
+      #766f64 48%,
+      #c6a96f 68%,
+      #625d54 100%
+    );
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.035),
+    0 10px 34px rgba(198,169,111,.045);
+}
+
+/* Portfolio cards */
+.video-card{
+  position:relative;
+  will-change:transform,opacity;
+  transition:transform .4s cubic-bezier(.2,.7,.2,1);
+}
+.video-card:hover{
+  transform:translateY(-7px);
+}
+.video-thumb{
+  transition:border-color .35s ease,box-shadow .35s ease;
+}
+.video-card:hover .video-thumb{
+  border-color:rgba(198,161,91,.32);
+  box-shadow:0 24px 70px rgba(0,0,0,.42);
+}
+.video-thumb span{
+  transition:transform .35s ease,background .35s ease,border-color .35s ease;
+}
+.video-card:hover .video-thumb span{
+  transform:scale(1.12);
+  border-color:#c6a15b;
+  background:rgba(7,7,7,.78);
+}
+.video-card h3{
+  transition:color .3s ease,transform .3s ease;
+}
+.video-card:hover h3{
+  color:#fff;
+  transform:translateX(4px);
+}
+.featured-card{
+  position:relative;
+}
+.featured-card::before{
+  content:"FEATURED";
+  position:absolute;
+  top:16px;
+  left:16px;
+  z-index:4;
+  padding:7px 10px;
+  border:1px solid rgba(255,255,255,.17);
+  background:rgba(7,7,7,.62);
+  backdrop-filter:blur(8px);
+  font-size:.56rem;
+  letter-spacing:.15em;
+  color:#d7d1c7;
+  pointer-events:none;
+}
+
+/* Scroll progress indicator */
+.scroll-progress{
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:2px;
+  z-index:60;
+  pointer-events:none;
+  background:rgba(255,255,255,.04);
+}
+.scroll-progress-bar{
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,#725a34,#d1ad66,#f0d294);
+  transform:scaleX(0);
+  transform-origin:left center;
+  will-change:transform;
+}
+
+/* Artist section */
+.signature-photo-wrap{
+  will-change:transform;
+}
+.signature-photo-wrap img{
+  will-change:transform;
+}
+
+/* Contact cinematic finish */
+.contact-bg{
+  will-change:transform,filter;
+}
+.contact h2{
+  overflow:hidden;
+}
+.contact h2,
+.contact-logo,
+.contact-email{
+  will-change:transform,opacity;
+}
+
+/* Accessibility: no dramatic motion for users requesting reduced motion */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero-bg:after{animation:none}
+  .real-artwork:hover::after{animation:none}
+  .video-card,.video-thumb img,.hero-cutout,.circle-button{transition:none}
+  .motion-marquee-track{transform:none!important}
+  .page-loader{display:none}
+}
+
+/* v7 responsive tuning */
+@media(max-width:800px){
+  .motion-marquee{padding:20px 0}
+  .motion-marquee-track{gap:18px}
+  .featured-card::before{top:10px;left:10px}
+}
+/* =========================================================
+   SUNNY v7 — prominent hero social links
+   ========================================================= */
+
+.hero-socials{
+  max-width:760px;
+  margin-top:30px;
+  padding-top:23px;
+  border-top:1px solid rgba(255,255,255,.11);
+}
+
+.hero-socials-label{
+  margin:0 0 14px;
+  font-size:.64rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  color:#b7b0a4;
+}
+
+.hero-social-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.hero-social{
+  min-width:128px;
+  min-height:46px;
+  padding:0 17px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:100px;
+  background:rgba(18,18,16,.72);
+  backdrop-filter:blur(10px);
+  color:#eeeae1;
+  text-decoration:none;
+  font:500 .72rem "DM Sans",sans-serif;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  box-shadow:0 10px 35px rgba(0,0,0,.16);
+  transition:
+    transform .28s ease,
+    background .28s ease,
+    border-color .28s ease,
+    color .28s ease,
+    box-shadow .28s ease;
+}
+
+.hero-social b{
+  font-size:.92rem;
+  font-weight:400;
+  color:#9c927d;
+  transition:transform .28s ease,color .28s ease;
+}
+
+.hero-social:hover{
+  transform:translateY(-3px);
+  border-color:rgba(198,161,91,.62);
+  background:#eeeae1;
+  color:#070707;
+  box-shadow:0 16px 45px rgba(0,0,0,.3);
+}
+
+.hero-social:hover b{
+  transform:translate(2px,-2px);
+  color:#725a34;
+}
+
+/* Instagram + YouTube are the main conversion actions. */
+.hero-social.primary{
+  border-color:rgba(211,178,111,.72);
+  background:linear-gradient(135deg,#d5b46f 0%,#a68043 100%);
+  color:#090806;
+  font-weight:700;
+  box-shadow:
+    0 12px 38px rgba(175,132,63,.16),
+    inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+.hero-social.primary b{
+  color:#20180d;
+}
+
+.hero-social.primary:hover{
+  background:linear-gradient(135deg,#efd697 0%,#c79d54 100%);
+  border-color:#efd697;
+  box-shadow:0 18px 50px rgba(175,132,63,.24);
+}
+
+/* Slightly reduce the empty space below hero content now that socials live here. */
+.hero-bottom{
+  margin-top:25px;
+}
+
+/* Old strip is no longer part of the layout. */
+.follow-strip{
+  display:none!important;
+}
+
+@media(max-width:1050px){
+  .hero-socials{
+    margin-top:24px;
+  }
+
+  .hero-social{
+    min-width:118px;
+    min-height:44px;
+    padding:0 15px;
+  }
+}
+
+@media(max-width:800px){
+  .hero-socials{
+    width:100%;
+    margin-top:28px;
+    padding-top:20px;
+  }
+
+  .hero-socials-label{
+    font-size:.68rem;
+    color:#d2cdc3;
+    margin-bottom:13px;
+  }
+
+  .hero-social-links{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
+  }
+
+  .hero-social{
+    width:100%;
+    min-width:0;
+    min-height:52px;
+    padding:0 15px;
+    font-size:.69rem;
+    border-color:rgba(255,255,255,.24);
+    background:rgba(22,22,20,.92);
+  }
+
+  .hero-social.primary{
+    min-height:56px;
+    font-size:.73rem;
+  }
+
+  /* Keep the social CTAs visible before the secondary hero footer content. */
+  .hero-bottom{
+    margin-top:26px;
+  }
+}
+
+@media(max-width:420px){
+  .hero-social-links{
+    grid-template-columns:1fr;
+  }
+
+  .hero-social{
+    min-height:50px;
+    font-size:.72rem;
+  }
+
+  .hero-social.primary{
+    min-height:54px;
+  }
+}

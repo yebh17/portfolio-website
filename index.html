@@ -12,6 +12,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="page-loader" aria-hidden="true">
+    <div class="page-loader-inner">
+      <img src="assets/sunny-logo.png" alt="">
+      <span>SUNNY</span>
+    </div>
+  </div>
   <div class="noise"></div>
 
   <header class="site-header">
@@ -33,7 +39,7 @@
       <div class="hero-bg"></div>
       <div class="hero-content">
         <p class="eyebrow">ELECTRONIC MUSIC PRODUCER · DJ · SWEDEN</p>
-        <h1><em>SUNNY</em></h1>
+        <h1 class="hero-title"><em>SUNNY</em></h1>
         <p class="hero-bio">
           SUNNY is a Sweden-based electronic music producer and DJ specializing in
           <strong>Tech House</strong> and <strong>Progressive House</strong>. His sound combines
@@ -44,26 +50,55 @@
           Built around the dancefloor but shaped by melody, SUNNY's work reimagines familiar
           songs through contemporary house production while developing an original sound of his own.
         </p>
+
+        <div class="hero-socials" aria-label="Follow and listen to SUNNY">
+          <p class="hero-socials-label">FOLLOW &amp; LISTEN</p>
+          <div class="hero-social-links">
+            <a class="hero-social primary instagram" href="https://www.instagram.com/_djsunny_official" target="_blank" rel="noreferrer">
+              <span>Instagram</span><b>↗</b>
+            </a>
+            <a class="hero-social primary youtube" href="https://www.youtube.com/@Sunny_n7" target="_blank" rel="noreferrer">
+              <span>YouTube</span><b>↗</b>
+            </a>
+            <a class="hero-social" href="https://open.spotify.com/artist/5VJWCaJAIUzVYeE7Dfc17R?si=XIioWIOjThKfHFeV4ETyfA&nd=1&dlsi=ea5942b420c14d07" target="_blank" rel="noreferrer">
+              <span>Spotify</span><b>↗</b>
+            </a>
+            <a class="hero-social" href="https://music.apple.com/se/artist/sunny/1849502310" target="_blank" rel="noreferrer">
+              <span>Apple Music</span><b>↗</b>
+            </a>
+            <a class="hero-social" href="https://soundcloud.com/yebh17?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank" rel="noreferrer">
+              <span>SoundCloud</span><b>↗</b>
+            </a>
+            <a class="hero-social" href="https://www.facebook.com/bharani.kumar.1276" target="_blank" rel="noreferrer">
+              <span>Facebook</span><b>↗</b>
+            </a>
+          </div>
+        </div>
         <div class="hero-bottom">
           <p>REMIXES · ORIGINALS · DJ SETS</p>
           <a class="circle-button" href="#music" aria-label="Explore music">↓</a>
         </div>
       </div>
-      <div class="hero-photo-wrap">
+      <div class="hero-photo-wrap" data-parallax="hero">
         <img class="hero-cutout" src="assets/sunny-hero.png" alt="SUNNY performing live">
       </div>
       <div class="hero-index">01 / 04</div>
     </section>
 
-    <section class="follow-strip" aria-label="Follow SUNNY">
-      <div class="follow-title">FOLLOW SUNNY</div>
-      <div class="follow-links">
-        <a href="https://www.instagram.com/_djsunny_official" target="_blank" rel="noreferrer">Instagram ↗</a>
-        <a href="https://www.youtube.com/@Sunny_n7" target="_blank" rel="noreferrer">YouTube ↗</a>
-        <a href="https://open.spotify.com/artist/5VJWCaJAIUzVYeE7Dfc17R?si=XIioWIOjThKfHFeV4ETyfA&nd=1&dlsi=ea5942b420c14d07" target="_blank" rel="noreferrer">Spotify ↗</a>
-        <a href="https://music.apple.com/se/artist/sunny/1849502310" target="_blank" rel="noreferrer">Apple Music ↗</a>
-        <a href="https://soundcloud.com/yebh17?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank" rel="noreferrer">SoundCloud ↗</a>
-        <a href="https://www.facebook.com/bharani.kumar.1276" target="_blank" rel="noreferrer">Facebook ↗</a>
+    <section class="motion-marquee" aria-label="SUNNY music styles">
+      <div class="motion-marquee-track">
+        <span>TECH HOUSE</span><i>✦</i>
+        <span>PROGRESSIVE HOUSE</span><i>✦</i>
+        <span>REMIXES</span><i>✦</i>
+        <span>ORIGINAL MUSIC</span><i>✦</i>
+        <span>DJ SETS</span><i>✦</i>
+        <span>SUNNY</span><i>✦</i>
+        <span>TECH HOUSE</span><i>✦</i>
+        <span>PROGRESSIVE HOUSE</span><i>✦</i>
+        <span>REMIXES</span><i>✦</i>
+        <span>ORIGINAL MUSIC</span><i>✦</i>
+        <span>DJ SETS</span><i>✦</i>
+        <span>SUNNY</span><i>✦</i>
       </div>
     </section>
 
@@ -89,7 +124,11 @@
 
     <section class="statement">
       <p class="statement-small">THE PORTFOLIO</p>
-      <h2>REMIXES.<br><span>ORIGINAL MUSIC.</span><br>LIVE DJ SETS.</h2>
+      <h2 class="statement-title">
+        <span class="statement-line">REMIXES.</span>
+        <span class="statement-line muted">ORIGINAL MUSIC.</span>
+        <span class="statement-line">LIVE DJ SETS.</span>
+      </h2>
     </section>
 
     <section class="videos section" id="videos">
@@ -98,7 +137,7 @@
         <a href="https://www.youtube.com/@Sunny_n7" target="_blank" rel="noreferrer" class="text-link">VIEW FULL YOUTUBE ↗</a>
       </div>
       <div class="portfolio-intro"><p>Selected releases, remixes, original productions and DJ performances from SUNNY.</p></div>
-      <div class="video-grid">
+      <div class="video-grid" data-portfolio-grid>
         <article class="video-card featured-card"><a class="video-thumb" href="https://www.youtube.com/watch?v=sI-t2abcOnc" target="_blank" rel="noreferrer"><img src="https://img.youtube.com/vi/sI-t2abcOnc/maxresdefault.jpg" alt="Amalapura Bulloda Remix"><span>▶</span></a><p>01 · LATEST</p><h3>Amalapura Bulloda</h3><small>Tech House Remix</small></article>
         <article class="video-card"><a class="video-thumb" href="https://youtu.be/2ZsKk5R9H6Q?si=iEM2nZT5_nM6GEaY" target="_blank" rel="noreferrer"><img src="https://img.youtube.com/vi/2ZsKk5R9H6Q/hqdefault.jpg" alt="Kanulu Terichina Kanulu Moosina Remix"><span>▶</span></a><p>02</p><h3>Kanulu Terichina Kanulu Moosina</h3><small>Remix</small></article>
         <article class="video-card"><a class="video-thumb" href="https://www.youtube.com/watch?v=ugzJ5iFJ4Qg" target="_blank" rel="noreferrer"><img src="https://img.youtube.com/vi/ugzJ5iFJ4Qg/hqdefault.jpg" alt="Gehra Hua Remix"><span>▶</span></a><p>03</p><h3>Gehra Hua</h3><small>Remix</small></article>
@@ -138,6 +177,8 @@
     <div>SWEDEN · ELECTRONIC MUSIC</div>
     <div>© <span id="year"></span></div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
